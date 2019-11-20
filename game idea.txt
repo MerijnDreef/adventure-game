@@ -1,0 +1,45 @@
+dungeon:
+you play as a warrior class the objective is to clear the dungeon and take the loot(further enemies are to be made)
+
+different gates require different keys
+
+current enemies: undead(species: undead warrior(medium hp can block), undead archer(medium to low hp)), blaring hunter (melee, can stun), loud screech stuns),
+undead bear (has high hp and can do alot of damage), undead raptor (fast but has low hp medium damage).
+ 
+health is to be a thing, random number generator needed, damage points need to be thought of quick and hp too. DONE
+
+(these indications are not accurate they are just reminders)
+health high = 200 hp
+health medium = 150 hp
+health low = 80 hp
+
+health you: 190 hp
+health undead warrior: 160 hp
+health undead archer: 90 hp
+health blaring hunter: 110 hp
+health boss undead bear name: Bleeding Meteor (thanks Rowin): 220 hp
+undead raptor: 80 hp
+
+1 dmg = -1 hp
+
+damage high: 130 dmg
+damage medium:  70 dmg
+damage low: 20 dmg
+damage ranged: 80 dmg
+
+random number generator actions
+
+undead warrior: 1.damage medium - 2.damage low - 3. miss|
+undead archer: 1.damage ranged - 2.damage low - 3.miss|
+blaring hunter: 1.damage medium - 2.damage low - 3.stun - 4.miss|
+boss undead bear (Bleeding Meteor): 1.damage high - 2.damage medium - 3.miss - 4.stun|
+undead raptor: 1.damage low - 2.miss - 3.damage medium|
+you have a chance to block damage basicly making the damage count 0
+
+story:
+you're a warrior looking for a dungeon you have no party members because you don't want to lose them.
+So you are looking and looking you find a quest to slay a dungeon keeper who terrorises villages by plundering and murdering.
+His name? Bleeding Meteor noone knows how he looks, they only know that he is dangerous.
+
+As you go through the howling forest you see the dungeon, you enter through the stone doorway followed by a long hallway of torches it seems to be endless, but then you see an end,
+You are now in a room (think what would happen here)
