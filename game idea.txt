@@ -58,3 +58,6 @@ You are now in a room where an undead warrior awaits you, (you now go in to comb
 
 Code opties (Onthoud dit!):
 levels (bijvoorbeeld loadlevel.1, etc
+
+height = 549 px
+width = 556px

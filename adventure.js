@@ -17,6 +17,25 @@ function background(backgrOption){
     ];
     document.body.style.background = ground[backgrOption];
 }
+function enemy(firstBattle){
+    var sight = [
+        "css/images/undead-warrior-size.png",
+        "url('css/images/undead-archer-size.png')",
+        "url('css/images/blaring-hunter.png')",
+        "url('css/images/undead-raptor-size.png')",
+        "url('css/images/boss-bear.png')"
+    ]
+    var enemy = document.createElement('img');
+    enemy.className = "enemy";
+    if(firstBattle) {
+        enemy.src = sight[0];
+    } else {
+        enemy.src = sight[Math.floor(Math.random() * 4)];
+    }
+    enemy.style.top = window.innerHeight / 2;
+    enemy.style.left = window.innerWidth / 2;
+    document.body.appendChild(enemy);
+}
 Math.floor(Math.random() * 3)
 function Text(){
     document.getElementById("game-container").style.display = "block";
@@ -30,5 +49,5 @@ function entrance(){
     document.getElementById("title").style.display = "none";
     document.getElementById("description").style.display = "none";
     background(1)
-    var enemy = document.createElement("img")
+    enemy(true)
 }
