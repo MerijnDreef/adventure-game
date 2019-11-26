@@ -8,7 +8,7 @@ function kaasRoll(){
 }
 function background(backgrOption){
     var ground = [
-        "url('css/images/dungeon-entrance.jpg')"
+        "url('css/images/dungeon-entrance-size.png')"
     ];
     document.body.style.background = ground[backgrOption];
 }

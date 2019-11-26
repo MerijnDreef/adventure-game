@@ -31,12 +31,20 @@ damage ranged: 80 dmg
 
 random number generator actions
 
-undead warrior: 1.damage medium - 2.damage low - 3. miss|
+undead warrior: 1.damage medium - 2.damage low - 3. miss - 4.block|
 undead archer: 1.damage ranged - 2.damage low - 3.miss|
 blaring hunter: 1.damage medium - 2.damage low - 3.stun - 4.miss|
 boss undead bear (Bleeding Meteor): 1.damage high - 2.damage medium - 3.miss - 4.stun|
 undead raptor: 1.damage low - 2.miss - 3.damage medium|
 you have a chance to block damage basicly making the damage count 0
+
+Items
+
+Health Potions = heals 90 hp|
+absorption potion = absorps 50% of damage (lasts until after battle)|
+keys = Key of summoning (gate of summoning - Key of horror (gate of horror) - Key of your eternal reward (gate of your eternal reward)|
+sword = does 25% more damage than standard (when this item is found)
+shield = gives 25% more chance to block(when this item is found)
 
 story:
 you're a warrior looking for a dungeon you have no party members because you don't want to lose them.
@@ -45,3 +53,7 @@ His name? Bleeding Meteor noone knows how he looks, they only know that he is da
 
 As you go through the howling forest you see the dungeon, you enter through the stone doorway followed by a long hallway of torches it seems to be endless, but then you see an end,
 You are now in a room where an undead warrior awaits you, (you now go in to combat with the undead warrior - garuanteed drop key to next room)
+
+
+Code opties (Onthoud dit!):
+levels (bijvoorbeeld loadlevel.1, etc
