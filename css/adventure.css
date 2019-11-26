@@ -1,13 +1,29 @@
+html{
+    height:100%;
+}
 #game-container{
+    display:block;
+    width: 50%;
+    margin: auto;
     display:none;
 }
 #game-buttons{
-    margin:0 auto;
-    width: 1000px;
+    position: absolute;
+    bottom:0px;
+    left:570px;
+}
+#inventoryItem{
+    position:absolute;
+    bottom:0px;
+    left:950px;
+}
+#game-buttons>button{
+    width:100px;
+    height:50px;
 }
 #button1{
-    margin-right:30px;
+    margin-right:20px;
 }
 #button2{
-    margin-right:30px;
+    margin-right:20px;
 }
