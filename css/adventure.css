@@ -1,0 +1,13 @@
+#game-container{
+    display:none;
+}
+#game-buttons{
+    margin:0 auto;
+    width: 1000px;
+}
+#button1{
+    margin-right:30px;
+}
+#button2{
+    margin-right:30px;
+}

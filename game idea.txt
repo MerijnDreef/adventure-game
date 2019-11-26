@@ -1,4 +1,5 @@
 html: je mag niks er in aanpassen behalve de text zoals: zet titel hier
+gevalideerd
 
 dungeon:
 you play as a warrior class the objective is to clear the dungeon and take the loot(further enemies are to be made)
