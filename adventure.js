@@ -22,13 +22,13 @@ function enemy(firstBattle){
         "css/images/undead-warrior-size.png",
         "css/images/undead-archer-size.png",
         "css/images/blaring-hunter.png",
-        "css/images/undead-test.png",
+        "css/images/undead-raptor-size.png",
         "css/images/boss-bear.png"
     ]
     var enemy = document.createElement('img');
     enemy.className = "enemy";
     if(firstBattle) {
-        enemy.src = sight[0];
+        enemy.src = sight[1];
     } else {
         enemy.src = sight[Math.floor(Math.random() * 4)];
     }
