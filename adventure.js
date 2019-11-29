@@ -17,6 +17,9 @@ var b1 = document.getElementById('button1');
 var b2 = document.getElementById('button2');
 var b3 = document.getElementById('button3');
 
+b1.innerText = 'High';
+b2.innerText = 'medium';
+b3.innerText = 'low';
 const maxPlayerHealth = 190;
 var playerHealth = maxPlayerHealth;
 
@@ -51,10 +54,12 @@ function createHealthBar(id, locationX, locationY, alignRight) {
     healthBar.appendChild(healthPart);
     document.body.appendChild(healthBar);
 }
-// createHealthBar("Test", "1100px", "200px", false);
-// currentHealth -= 20;
-// document.getElementById("healthPartTest").style.width = 100 / MaxHealth * currentHealth + "%";
+createHealthBar("Enemy", "60px", "10px", true);
+createHealthBar("Player", "60px", "10px", false);
 
+document.getElementById("healthPartPlayer").width = 100 / maxPlayerHealth * playerHealth
+document.getElementById("healthBarPlayer").style.display = 'none';
+document.getElementById("healthBarEnemy").style.display = 'none';
 function kaasRoll(){
     background(0)
     Text(0)
@@ -79,7 +84,7 @@ function enemy(firstBattle){
     if(firstBattle) {
         enemy.src = sight[0];
     } else {
-        enemy.src = sight[Math.floor(Math.random() * 4)];
+        enemy.src = sight[Math.floor(Math.random() * 3)];
     }
     enemy.style.top = window.innerHeight / 2;
     enemy.style.left = window.innerWidth / 2;
@@ -105,6 +110,8 @@ function entrance(){
     document.getElementById("control").style.display = "none";
     document.getElementById("info").style.display = "none";
     background(1)
+    document.getElementById("healthBarPlayer").style.display = 'block';
+    document.getElementById("healthBarEnemy").style.display = 'block';
     if(firstRun) {
         firstRun = false
         enemy(true)
