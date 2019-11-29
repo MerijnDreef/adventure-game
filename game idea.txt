@@ -61,3 +61,5 @@ levels (bijvoorbeeld loadlevel.1, etc
 
 height = 549 px
 width = 556px
+
+in level 2 kan je een zwaard vinden en een schild het zwaard is verplicht het schild is optioneel

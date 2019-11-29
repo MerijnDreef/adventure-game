@@ -27,6 +27,8 @@ html{
 #button2{
     margin-right:20px;
 }
-/*.enemy {
+.enemy {
     position: absolute;
-}*/
+    left:470px;
+    top:100px;
+}
