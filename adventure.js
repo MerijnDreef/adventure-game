@@ -5,6 +5,17 @@ test.onclick = kaasRoll
 
 var title = document.getElementById('title');
 var text = document.getElementById('description');
+var control = document.createElement('h1');
+control.id = "control";
+document.getElementById("game-container").appendChild(control);
+control = document.getElementById("control");
+var info = document.createElement('p');
+info.id = "info";
+document.getElementById("game-container").appendChild(info);
+info = document.getElementById("info");
+var b1 = document.getElementById('button1');
+var b2 = document.getElementById('button2');
+var b3 = document.getElementById('button3');
 
 function kaasRoll(){
     background(0)
@@ -41,14 +52,20 @@ function Text(){
     document.getElementById("game-container").style.display = "block";
     title.style.color = 'white';
     text.style.color = 'white';
+    control.style.color = 'white';
+    info.style.color = 'white';
     title.innerText = 'The quest for Liberty'
     text.innerText = 'you are a warrior looking for a dungeon you have no party members because you do not want to lose them. So you are looking and looking you find a quest to slay a dungeon keeper who terrorises villages by plundering and murdering. His name? Bleeding Meteor noone knows how he looks, they only know that he is dangerous.'+'As you go through the howling forest you see the dungeon, you enter through the stone doorway followed by a long hallway of torches it seems to be endless, but then you see an end, You are now in a room where an undead warrior awaits you'
+    control.innerText = 'Game controls and info'
+    info.innerText = 'Greetings player! Today I will explain how this game works, let us begin: on the mid left side of your screen will be your damage log, it will say how much damage was done to you and the enemy, on the bottom will be your damage buttons: damage buttons have different damage counters such as high doing high damage but with more chance to miss, medium doing medium damage with a lower chance of missing but higher than low, low doing low damage but with almost no chance of missing. then beside that are your items they display what you have found in the dungeon, top left will be your health, top right will be the enemies health! After each battle you have a chance of getting items. This is all you have to know, goodluck!'
     test.onclick = entrance
 }
  var firstRun = true
 function entrance(){
     document.getElementById("title").style.display = "none";
     document.getElementById("description").style.display = "none";
+    document.getElementById("control").style.display = "none";
+    document.getElementById("info").style.display = "none";
     background(1)
     if(firstRun) {
         firstRun = false

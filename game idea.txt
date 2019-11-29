@@ -27,7 +27,7 @@ undead raptor: 80 hp
 
 damage high: 130 dmg
 damage medium:  70 dmg
-damage low: 20 dmg
+damage low: 40 dmg
 damage ranged: 80 dmg
 
 random number generator actions
@@ -63,3 +63,7 @@ height = 549 px
 width = 556px
 
 in level 2 kan je een zwaard vinden en een schild het zwaard is verplicht het schild is optioneel
+
+damage high = 55% chance miss
+damage medium = 35% chance miss
+damage low = 15% chance miss 
