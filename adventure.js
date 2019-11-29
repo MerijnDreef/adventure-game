@@ -17,6 +17,44 @@ var b1 = document.getElementById('button1');
 var b2 = document.getElementById('button2');
 var b3 = document.getElementById('button3');
 
+const maxPlayerHealth = 190;
+var playerHealth = maxPlayerHealth;
+
+var maxEnemyHealth;
+var enemyHealth;
+
+function createHealthBar(id, locationX, locationY, alignRight) {
+    var healthBar = document.createElement("div");
+    var healthPart = document.createElement("div");
+
+    healthPart.id = "healthPart" + id;
+    healthBar.id = "healthBar" + id;
+
+    healthBar.style.width = "300px";
+    healthBar.style.height = "25px";
+    healthBar.style.display = "inline-block"
+    healthPart.style.width = "100%";
+    healthPart.style.height = "25px";
+
+    healthBar.style.position = "absolute";
+    if(alignRight) {
+        healthBar.style.right = locationX;
+    } else {
+        healthBar.style.left = locationX;
+    }
+    healthBar.style.top = locationY;
+
+
+    healthBar.style.backgroundColor = "#00000080";
+    healthPart.style.backgroundColor = "#DC143C";
+
+    healthBar.appendChild(healthPart);
+    document.body.appendChild(healthBar);
+}
+// createHealthBar("Test", "1100px", "200px", false);
+// currentHealth -= 20;
+// document.getElementById("healthPartTest").style.width = 100 / MaxHealth * currentHealth + "%";
+
 function kaasRoll(){
     background(0)
     Text(0)
@@ -73,5 +111,33 @@ function entrance(){
 
     } else {
         enemy(false);
+    }
+}
+
+function highDamage() {
+    playerHealth -= 130;
+    document.getElementById("healthPartTest").style.width = 100 / maxPlayerHealth * playerHealth + "%";
+}
+function mediumDamage() {
+    playerHealth -= 70;
+    document.getElementById("healthPartTest").style.width = 100 / maxPlayerHealth * playerHealth + "%";
+
+}
+function lowDamage() {
+    playerHealth -= 40;
+    document.getElementById("healthPartTest").style.width = 100 / maxPlayerHealth * playerHealth + "%";
+
+}
+function rangedDamage() {
+    playerHealth -= 80;
+    document.getElementById("healthPartTest").style.width = 100 / maxPlayerHealth * playerHealth + "%";
+}
+function dealDamage(enemy, amount) {
+    if(enemy == "player") {
+        playerHealth -= amount;
+        document.getElementById("healthPartTest").style.width = 100 / maxPlayerHealth * playerHealth + "%";
+    } else if(enemy == "enemy") {
+        enemyHealth -= amount;
+        document.getElementById("healthPartTest").style.width = 100 / maxPlayerHealth * playerHealth + "%";
     }
 }
