@@ -25,6 +25,7 @@ var playerHealth = maxPlayerHealth;
 
 var maxEnemyHealth;
 var enemyHealth;
+var enemyName;
 
 function createHealthBar(id, locationX, locationY, alignRight) {
     var healthBar = document.createElement("div");
@@ -73,19 +74,22 @@ function background(backgrOption){
 }
 function enemy(firstBattle){
     var sight = [
-        "css/images/undead-warrior-size.png",
-        "css/images/undead-archer-size.png",
-        "css/images/blaring-hunter.png",
-        "css/images/undead-raptor-size.png",
-        "css/images/boss-bear-size.png"
+        "undead-warrior-size",
+        "undead-archer-size",
+        "blaring-hunter",
+        "undead-raptor-size",
+        "boss-bear-size"
     ]
     var enemy = document.createElement('img');
     enemy.className = "enemy";
     if(firstBattle) {
-        enemy.src = sight[0];
+        enemy.src = "css/images/" + sight[0] + ".png";
+        var x = 0;
     } else {
-        enemy.src = sight[Math.floor(Math.random() * 3)];
+        var x = Math.floor(Math.random() * 3);
+        enemy.src = "css/images/" + sight[x] + ".png";
     }
+    enemyName = x;
     enemy.style.top = window.innerHeight / 2;
     enemy.style.left = window.innerWidth / 2;
     document.body.appendChild(enemy);
