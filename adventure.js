@@ -78,12 +78,14 @@ function enemy(firstBattle){
         "undead-archer-size",
         "blaring-hunter",
         "undead-raptor-size",
-        "boss-bear-size"
+        "boss-bear-size",
+        "key-of-summoning",
+        "key-of-horror"
     ]
     var enemy = document.createElement('img');
     enemy.className = "enemy";
     if(firstBattle) {
-        enemy.src = "css/images/" + sight[0] + ".png";
+        enemy.src = "css/images/" + sight[5] + ".png";
         var x = 0;
     } else {
         var x = Math.floor(Math.random() * 3);
