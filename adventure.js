@@ -22,6 +22,7 @@ b2.onclick = mediumDamage;
 var b3 = document.getElementById('button3');
 b3.onclick = lowDamage;
 
+
 b1.innerText = 'High';
 b2.innerText = 'medium';
 b3.innerText = 'low';
@@ -59,6 +60,11 @@ function createHealthBar(id, locationX, locationY, alignRight) {
 
     healthBar.appendChild(healthPart);
     document.body.appendChild(healthBar);
+    var healthbarGreen = document.createElement("div")
+healthbarGreen.style.backgroundColor = "green"
+healthbarGreen.width = "300px"
+healthbarGreen.height = "25px"
+document.getElementById("healthPartEnemy").appendChild(healthbarGreen);
 }
 createHealthBar("Enemy", "60px", "10px", true);
 createHealthBar("Player", "60px", "10px", false);
@@ -133,7 +139,6 @@ function entrance(){
 }
 
 function highDamage() {
-    // document.getElementById("healthPartenemy).style.width = 100 / maxPlayerHealth * playerHealth + "%";
     var chanceToHit = getRandom(1,100)
     if(chanceToHit > 55){
         enemyHealth-=130;
@@ -143,7 +148,6 @@ function highDamage() {
     document.getElementById("healthPartEnemy").innerHTML = enemyHealth
 }
 function mediumDamage() {
-    // document.getElementById("healthPartTest").style.width = 100 / maxPlayerHealth * playerHealth + "%";
     var chanceToHit = getRandom(1,100)
     if(chanceToHit > 35){
         enemyHealth-=70;
@@ -154,7 +158,6 @@ function mediumDamage() {
 
 }
 function lowDamage() {
-    // document.getElementById("healthPartTest").style.width = 100 / maxPlayerHealth * playerHealth + "%";
     var chanceToHit = getRandom(1,100)
     if(chanceToHit > 15){
         enemyHealth-=40;
