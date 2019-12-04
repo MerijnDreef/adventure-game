@@ -82,6 +82,7 @@ function background(backgrOption){
     var ground = [
         "url('css/images/dungeon-entrance-size.png')",
         "url('css/images/dungeon-normal-room-size.png')",
+        "url('css/images/dungeon-room-normal-1-size.png')",
         "url('css/images/dungeon-next-level-size.png')"
     ];
     document.body.style.background = ground[backgrOption];
@@ -130,7 +131,7 @@ function Text(){
     test.onclick = entrance
 }
  var firstRun = true
-function entrance(isGate){
+function entrance(){
     document.getElementById("game-buttons").style.display = "block";
     document.getElementById("title").style.display = "none";
     document.getElementById("description").style.display = "none";
@@ -147,7 +148,21 @@ function entrance(isGate){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
+    test.onclick = roomlvl1
 }
+
+function roomlvl1(){
+    background(2)
+    if(firstRun) {
+        firstRun = false
+        enemy(true)
+
+    } else {
+        enemy(false);
+    }
+    document.getElementById("button").style.display = "none";
+}
+
 function isEnemyDead() {
     if(enemyHealth <= 0) {
         document.getElementsByClassName("enemy")[0].remove();
@@ -207,4 +222,40 @@ function dealDamage(enemy, amount) {
 
 function getRandom(from, to){
     return(Math.floor((Math.random() * to) + from))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var items = []
+
+items.push("key1")
+
+
+//door
+for (let index = 0; index < items.length; index++) {
+    if(items[index] == "key1"){
+
+    }
+    
 }
