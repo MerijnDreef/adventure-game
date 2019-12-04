@@ -79,7 +79,7 @@ function background(backgrOption){
         "url('css/images/dungeon-entrance-size.png')",
         "url('css/images/dungeon-normal-room-size.png')",
         "url('css/images/dungeon-room-normal-1-size.png')",
-        "url('css/images/dungeon-next-level-size.png')",
+        "url('css/images/dungeon-next-lvl-size.png')",
         "url('css/images/dungeon-room-lvl2-1-size.png')",
         "url('css/images/dungeon-room-lvl2-2-size.png')",
         "url('css/images/dungeon-room-lvl2-3-size.png')",
@@ -150,6 +150,7 @@ function entrance(){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
+    keys(key[0]);
     test.onclick = roomlvl1
 }
 
@@ -167,7 +168,8 @@ function roomlvl1(){
 }
 
 function gatelvl1(){
-
+    background(3)
+    playerHealth = 190
 }
 function isEnemyDead() {
     if(enemyHealth <= 0) {
@@ -178,7 +180,7 @@ function isEnemyDead() {
 }
 function highDamage() {
     var chanceToHit = getRandom(1,100)
-    if(chanceToHit > 55){
+    if(chanceToHit > 45){
         dealDamage("enemy", 130);
     }
     document.getElementById("healthPartEnemy").innerHTML = enemyHealth
@@ -186,7 +188,7 @@ function highDamage() {
 }
 function mediumDamage() {
     var chanceToHit = getRandom(1,100)
-    if(chanceToHit > 35){
+    if(chanceToHit > 30){
         dealDamage("enemy", 70);
     }
     document.getElementById("healthPartEnemy").innerHTML = enemyHealth
@@ -195,7 +197,7 @@ function mediumDamage() {
 }
 function lowDamage() {
     var chanceToHit = getRandom(1,100)
-    if(chanceToHit > 15){
+    if(chanceToHit > 10){
         dealDamage("enemy", 40);
     }
     document.getElementById("healthPartEnemy").innerHTML = enemyHealth
@@ -245,12 +247,20 @@ function keys(namekey){
     newKey.src = "css/images/" + namekey + ".png";
     document.getElementById("keyBag").appendChild(newKey);
 }
-keys(key[0]);
+
 keys(key[1]);
 keys(key[2]);
 
 
-
+if(playerHealth == 0){
+    document.getElementById("b1").style.display = "none";
+    document.getElementById("b2").style.display = "none";
+    document.getElementById("b3").style.display = "none";
+    document.getElementById("healthBarPlayer").style.display = 'none';
+    document.getElementById("healthBarEnemy").style.display = 'none';
+    document.getElementById("button").style.display = "none";
+    //change background
+}
 
 
 
