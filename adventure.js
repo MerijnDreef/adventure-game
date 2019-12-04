@@ -4,8 +4,6 @@ test.id = "button";
 test.innerHTML = "Start";
 test.onclick = kaasRoll;
 
-var inventory ={"key1" : false, "key2" : false};
-
 var title = document.getElementById('title');
 var text = document.getElementById('description');
 var control = document.createElement('h1');
@@ -62,11 +60,7 @@ function createHealthBar(id, locationX, locationY, alignRight) {
 
     healthBar.appendChild(healthPart);
     document.body.appendChild(healthBar);
-    var healthbarGreen = document.createElement("div")
-healthbarGreen.style.backgroundColor = "green"
-healthbarGreen.width = "300px"
-healthbarGreen.height = "25px"
-document.getElementById("healthPartEnemy").appendChild(healthbarGreen);
+    
 }
 createHealthBar("Enemy", "60px", "10px", true);
 createHealthBar("Player", "60px", "10px", false);
@@ -78,12 +72,20 @@ function kaasRoll(){
     background(0)
     Text(0)
 }
+document.getElementById("healthPartPlayer").innerText = playerHealth
+
 function background(backgrOption){
     var ground = [
         "url('css/images/dungeon-entrance-size.png')",
         "url('css/images/dungeon-normal-room-size.png')",
         "url('css/images/dungeon-room-normal-1-size.png')",
-        "url('css/images/dungeon-next-level-size.png')"
+        "url('css/images/dungeon-next-level-size.png')",
+        "url('css/images/dungeon-room-lvl2-1-size.png')",
+        "url('css/images/dungeon-room-lvl2-2-size.png')",
+        "url('css/images/dungeon-room-lvl2-3-size.png')",
+        "url('css/images/dungeon-room-lvl2-4-size.png')",
+        "url('css/images/dungeon-room-lvl2-5-size.png')",
+        "url('css/images/dungeon-gate-lvl2-size.png')",
     ];
     document.body.style.background = ground[backgrOption];
 }
@@ -161,8 +163,12 @@ function roomlvl1(){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
+    test.onclick = gatelvl1
 }
 
+function gatelvl1(){
+
+}
 function isEnemyDead() {
     if(enemyHealth <= 0) {
         document.getElementsByClassName("enemy")[0].remove();
@@ -226,36 +232,51 @@ function getRandom(from, to){
 
 
 
+var keyInv = document.createElement("div");
+keyInv.id = "keyBag";
+document.body.appendChild(keyInv);
+keyInv = document.getElementById("keyBag");
+document.getElementById("inventoryItem").remove();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var items = []
-
-items.push("key1")
-
-
-//door
-for (let index = 0; index < items.length; index++) {
-    if(items[index] == "key1"){
-
-    }
-    
+var key = ["key-of-summoning-size", "key-of-horror-size", "key-of-your-eternal-reward-size"];
+function keys(namekey){
+    var newKey = document.createElement("img");
+    newKey.className = "key";
+    newKey.src = "css/images/" + namekey + ".png";
+    document.getElementById("keyBag").appendChild(newKey);
 }
+keys(key[0]);
+keys(key[1]);
+keys(key[2]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var items = []
+
+// items.push("key1")
+
+
+// //door
+// for (let index = 0; index < items.length; index++) {
+//     if(items[index] == "key1"){
+
+//     }
+    
+// }
+
+
+
