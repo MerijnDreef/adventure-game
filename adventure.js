@@ -32,7 +32,7 @@ var playerHealth = maxPlayerHealth;
 var maxEnemyHealth;
 var enemyHealth = null;
 var enemyName;
-
+//hier word hp en enemies gecreeerd
 function createHealthBar(id, locationX, locationY, alignRight) {
     var healthBar = document.createElement("div");
     var healthPart = document.createElement("div");
@@ -86,6 +86,7 @@ function background(backgrOption){
         "url('css/images/dungeon-room-lvl2-4-size.png')",
         "url('css/images/dungeon-room-lvl2-5-size.png')",
         "url('css/images/dungeon-gate-lvl2-size.png')",
+        "url('css/images/Boss_Room_size.png')"
     ];
     document.body.style.background = ground[backgrOption];
 }
@@ -118,6 +119,7 @@ function enemy(firstBattle){
     enemy.style.left = window.innerWidth / 2;
     document.body.appendChild(enemy);
 }
+//hier is de informatie en uitleg kamer
 Math.floor(Math.random() * 3)
 function Text(){
     document.getElementById("game-buttons").style.display = "none";
@@ -132,6 +134,7 @@ function Text(){
     info.innerText = 'Greetings player! Today I will explain how this game works, let us begin: on the bottom will be your damage buttons: damage buttons have different damage counters such as high doing high damage but with more chance to miss, medium doing medium damage with a lower chance of missing but higher than low, low doing low damage but with the lowest chance of missing. then beside that are your items they display what you have found in the dungeon, top left will be your health, top right will be the enemies health! After each battle you have a chance of getting items. This is all you have to know, goodluck!'
     test.onclick = entrance
 }
+//hier zijn alle kamers
  var firstRun = true
 function entrance(){
     document.getElementById("game-buttons").style.display = "block";
@@ -170,7 +173,85 @@ function roomlvl1(){
 function gatelvl1(){
     background(3)
     playerHealth = 190
+    test.onclick = roomlvl2section1
 }
+
+function roomlvl2section1(){
+    background(4)
+    if(firstRun) {
+        firstRun = false
+        enemy(true)
+
+    } else {
+        enemy(false);
+    }
+    document.getElementById("button").style.display = "none";
+    test.onclick = roomlvl2section2
+}
+
+function roomlvl2section2(){
+    background(5)
+    if(firstRun) {
+        firstRun = false
+        enemy(true)
+
+    } else {
+        enemy(false);
+    }
+    document.getElementById("button").style.display = "none";
+    test.onclick = roomlvl2section3
+}
+
+function roomlvl2section3(){
+    background(6)
+    if(firstRun) {
+        firstRun = false
+        enemy(true)
+
+    } else {
+        enemy(false);
+    }
+    document.getElementById("button").style.display = "none";
+    test.onclick = roomlvl2section4
+}
+
+function roomlvl2section4(){
+    background(7)
+    if(firstRun) {
+        firstRun = false
+        enemy(true)
+
+    } else {
+        enemy(false);
+    }
+    document.getElementById("button").style.display = "none";
+    test.onclick = roomlvl2section5
+}
+
+function roomlvl2section5(){
+    background(8)
+    if(firstRun) {
+        firstRun = false
+        enemy(true)
+
+    } else {
+        enemy(false);
+    }
+    document.getElementById("button").style.display = "none";
+    test.onclick = gatelvl2
+}
+
+function gatelvl2(){
+    background(9)
+    playerHealth = 190
+    test.onclick = bossroom
+}
+
+function bossroom(){
+    background(10)
+    test.onclick = einde
+}
+//dit is de damage section
 function isEnemyDead() {
     if(enemyHealth <= 0) {
         document.getElementsByClassName("enemy")[0].remove();
@@ -261,7 +342,9 @@ if(playerHealth == 0){
     document.getElementById("button").style.display = "none";
     //change background
 }
-
+function dmgMeleeAI(){
+    
+}
 
 
 
