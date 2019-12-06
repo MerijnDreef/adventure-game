@@ -38,3 +38,9 @@ html{
     bottom:0px;
     left:920px;
 }  
+#healthPartPlayer{
+    color: white;
+}
+#healthPartEnemy{
+    color: white;
+}
