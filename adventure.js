@@ -433,18 +433,3 @@ function dmgMeleeAI(){
         console.log("Enemy missed!");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
