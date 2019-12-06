@@ -5,7 +5,7 @@ test.innerHTML = "Start";
 test.onclick = kaasRoll;
 
 var audio2 = new Audio('css/images/Ingame-music.mp3');
-
+audio2.volume = 0.4;
 var title = document.getElementById('title');
 var text = document.getElementById('description');
 var control = document.createElement('h1');
@@ -40,7 +40,7 @@ var enemyData = [
     "undead-archer-size", 70, 50, 40, 80, 
     "blaring-hunter-size", 60, 50, 40, 80,
     "undead-raptor-size", 60, 50, 40, 80,
-    "boss-bear-size", 100, 40, 60, 45,
+    "boss-bear-size", 90, 40, 60, 45,
 ]
 //hier word hp en enemies gecreeerd
 function createHealthBar(id, locationX, locationY, alignRight) {
@@ -98,7 +98,7 @@ function background(backgrOption){
         "url('css/images/dungeon-gate-lvl2-size.png')",
         "url('css/images/Boss_Room_size.png')",
         "url('css/images/death-screen.png')",
-        "url('css/images/treasure-room-size.png')"
+        "url('css/images/treasure-room-end-size.png')"
     ];
     document.body.style.background = ground[backgrOption];
 }
@@ -286,6 +286,7 @@ function gatelvl2(){
     background(9)
     playerHealth = 190
     test.onclick = bossroom
+    
     document.getElementById("healthPartPlayer").innerHTML = playerHealth;
     document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
@@ -294,13 +295,23 @@ function bossroom(){
     background(10)
     enemy(false, true);
     test.onclick = einde
+    document.getElementById(key[1]).remove();
+    document.getElementById(key[2]).remove();
     document.getElementById("healthPartPlayer").innerHTML = playerHealth;
     document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
-
+var victory = new Audio('css/images/19.mp3');
+victory.volume = 0.5;
 function einde(){
-    audtio2.stop();
+    audio2.pause();
+    victory.play();
     background(12)
+    document.getElementById("button1").style.display = "none";
+    document.getElementById("button2").style.display = "none";
+    document.getElementById("button3").style.display = "none";
+    document.getElementById("healthBarPlayer").style.display = 'none';
+    document.getElementById("healthBarEnemy").style.display = 'none';
+    document.getElementById("button").style.display = "none";
     document.getElementById("healthPartPlayer").innerHTML = playerHealth;
     document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 
@@ -308,6 +319,7 @@ function einde(){
 
 //dit is de damage section
 var audio = new Audio('css/images/audio_file.mp3');
+audio.volume = 0.4;
 var audio1 = new Audio('css/images/minecraft-death-sound.mp3');
 function isEnemyDead() {
     if(enemyHealth <= 0) {
