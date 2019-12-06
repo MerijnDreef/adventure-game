@@ -32,6 +32,14 @@ var playerHealth = maxPlayerHealth;
 var maxEnemyHealth;
 var enemyHealth = null;
 var enemyName;
+
+var enemyData = [
+    "undead-warrior-size", 60, 50, 40, 80,
+    "undead-archer-size", 70, 50, 40, 80, 
+    "blaring-hunter-size", 60, 50, 40, 80,
+    "undead-raptor-size", 60, 50, 40, 80,
+    "boss-bear-size", 100, 40, 60, 45,
+]
 //hier word hp en enemies gecreeerd
 function createHealthBar(id, locationX, locationY, alignRight) {
     var healthBar = document.createElement("div");
@@ -104,13 +112,14 @@ function enemy(firstBattle){
         enemy.src = "css/images/" + sight[0] + ".png";
         var x = 0;
     } else {
-        var x = Math.floor(Math.random() * 3);
+        var x = Math.floor(Math.random() * 4);
         enemy.src = "css/images/" + sight[x * 2] + ".png";
     }
     enemyName = x;
-    enemy.id = enemyName;
+    enemy.id = sight[enemyName * 2];
     enemyInfo[0] = sight[x * 2];
     enemyInfo[1] = sight[x * 2 + 1];
+    maxEnemyHealth = enemyInfo[1];
 
     enemyHealth = enemyInfo[1];
     document.getElementById("healthPartEnemy").innerText = enemyHealth;
@@ -118,6 +127,8 @@ function enemy(firstBattle){
     enemy.style.top = window.innerHeight / 2;
     enemy.style.left = window.innerWidth / 2;
     document.body.appendChild(enemy);
+
+    document.getElementById("healthPartEnemy").style.width = 100 / maxEnemyHealth * enemyHealth + "%";
 }
 //hier is de informatie en uitleg kamer
 Math.floor(Math.random() * 3)
@@ -153,7 +164,7 @@ function entrance(){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
-    keys(key[0]);
+    
     test.onclick = roomlvl1
 }
 
@@ -167,13 +178,17 @@ function roomlvl1(){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
+    keys(key[0]);
     test.onclick = gatelvl1
 }
 
 function gatelvl1(){
     background(3)
-    playerHealth = 190
+    playerHealth = maxPlayerHealth;
+
     test.onclick = roomlvl2section1
+    document.getElementById("healthPartPlayer").innerHTML = playerHealth;
+    document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
 
 function roomlvl2section1(){
@@ -187,6 +202,8 @@ function roomlvl2section1(){
     }
     document.getElementById("button").style.display = "none";
     test.onclick = roomlvl2section2
+    document.getElementById("healthPartPlayer").innerHTML = playerHealth;
+    document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
 
 function roomlvl2section2(){
@@ -200,6 +217,8 @@ function roomlvl2section2(){
     }
     document.getElementById("button").style.display = "none";
     test.onclick = roomlvl2section3
+    document.getElementById("healthPartPlayer").innerHTML = playerHealth;
+    document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
 
 function roomlvl2section3(){
@@ -213,6 +232,8 @@ function roomlvl2section3(){
     }
     document.getElementById("button").style.display = "none";
     test.onclick = roomlvl2section4
+    document.getElementById("healthPartPlayer").innerHTML = playerHealth;
+    document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
 
 function roomlvl2section4(){
@@ -225,7 +246,10 @@ function roomlvl2section4(){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
+    keys(key[1]);
     test.onclick = roomlvl2section5
+    document.getElementById("healthPartPlayer").innerHTML = playerHealth;
+    document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
 
 function roomlvl2section5(){
@@ -238,26 +262,48 @@ function roomlvl2section5(){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
+    keys(key[2]);
     test.onclick = gatelvl2
+    document.getElementById("healthPartPlayer").innerHTML = playerHealth;
+    document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
 
 function gatelvl2(){
     background(9)
     playerHealth = 190
     test.onclick = bossroom
+    document.getElementById("healthPartPlayer").innerHTML = playerHealth;
+    document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
 
 function bossroom(){
     background(10)
     test.onclick = einde
+    document.getElementById("healthPartPlayer").innerHTML = playerHealth;
+    document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
 }
+
+function einde(){
+    document.getElementById("healthPartPlayer").innerHTML = playerHealth;
+    document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
+
+}
+
 //dit is de damage section
+var audio = new Audio('css/images/audio_file.mp3');
 function isEnemyDead() {
     if(enemyHealth <= 0) {
-        document.getElementsByClassName("enemy")[0].remove();
+        if(document.getElementsByClassName("enemy")[0] != null || document.getElementsByClassName("enemy")[0] != undefined) {
+            document.getElementsByClassName("enemy")[0].remove();
+        }
         enemyHealth = 0;
         document.getElementById("button").style.display = "block";
+    } else {
+        dmgMeleeAI();
     }
+    document.getElementById("healthPartEnemy").style.width = 100 / maxEnemyHealth * enemyHealth + "%";
+    
+    audio.play();
 }
 function highDamage() {
     var chanceToHit = getRandom(1,100)
@@ -274,7 +320,6 @@ function mediumDamage() {
     }
     document.getElementById("healthPartEnemy").innerHTML = enemyHealth
     isEnemyDead();
-
 }
 function lowDamage() {
     var chanceToHit = getRandom(1,100)
@@ -295,11 +340,23 @@ function rangedDamage() {
 function dealDamage(enemy, amount) {
     if(enemy == "player") {
         playerHealth -= amount;
+        if(playerHealth < 0) {
+            playerHealth = 0;
+            // PLAYER DEAD HERE
+            document.getElementById("b1").style.display = "none";
+            document.getElementById("b2").style.display = "none";
+            document.getElementById("b3").style.display = "none";
+            document.getElementById("healthBarPlayer").style.display = 'none';
+            document.getElementById("healthBarEnemy").style.display = 'none';
+            document.getElementById("button").style.display = "none";
+            //change background
+        }
+        document.getElementById("healthPartPlayer").innerHTML = playerHealth;
         document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
     } else if(enemy == "enemy") {
         if(enemyHealth - amount > 0) {
             enemyHealth -= amount;
-            document.getElementById("healthPartEnemy").style.width = 100 / maxPlayerHealth * playerHealth + "%";
+            document.getElementById("healthPartEnemy").style.width = 100 / maxEnemyHealth * enemyHealth + "%";
         } else {
             enemyHealth = 0;
             document.getElementsByClassName("enemy")[0].remove();
@@ -312,8 +369,6 @@ function dealDamage(enemy, amount) {
 function getRandom(from, to){
     return(Math.floor((Math.random() * to) + from))
 }
-
-
 
 var keyInv = document.createElement("div");
 keyInv.id = "keyBag";
@@ -329,21 +384,28 @@ function keys(namekey){
     document.getElementById("keyBag").appendChild(newKey);
 }
 
-keys(key[1]);
-keys(key[2]);
 
 
-if(playerHealth == 0){
-    document.getElementById("b1").style.display = "none";
-    document.getElementById("b2").style.display = "none";
-    document.getElementById("b3").style.display = "none";
-    document.getElementById("healthBarPlayer").style.display = 'none';
-    document.getElementById("healthBarEnemy").style.display = 'none';
-    document.getElementById("button").style.display = "none";
-    //change background
-}
 function dmgMeleeAI(){
-    
+    var chanceToHit = getRandom(1,100);
+    var enemyPreset;
+    var enemy = document.getElementsByClassName("enemy")
+    for(var i = 0; i < enemyData.length; i++) {
+        if(enemyData[i] == enemy[0].id) {
+            enemyPreset = i / 5;
+        }
+    }
+    console.log(enemy.id);
+    console.log(chanceToHit);
+    console.log(enemyPreset);
+    if(chanceToHit > enemyData[enemyPreset * 5 + 2]){
+        dealDamage("player", enemyData[enemyPreset * 5 + 1]);
+    }
+    else if(chanceToHit > enemyData[enemyPreset * 5 + 4]){
+        dealDamage("player", enemyData[enemyPreset * 5 + 3]);   
+    } else {
+        console.log("Enemy missed!");
+    }
 }
 
 
@@ -357,19 +419,6 @@ function dmgMeleeAI(){
 
 
 
-
-// var items = []
-
-// items.push("key1")
-
-
-// //door
-// for (let index = 0; index < items.length; index++) {
-//     if(items[index] == "key1"){
-
-//     }
-    
-// }
 
 
 

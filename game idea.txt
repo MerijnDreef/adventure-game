@@ -63,8 +63,8 @@ height = 549 px
 width = 556px
 
 in level 2 kan je een zwaard vinden en een schild het zwaard is verplicht het schild is optioneel
-
-damage high = 45% chance miss
-damage medium = 30% chance miss
-damage low = 10% chance miss 
-damage Ranged = 40% chance miss
+					AI miss		AI hit chance
+damage high = 45% chance miss 55%	65%      	35%
+damage medium = 30% chance miss 70%	55%		45%
+damage low = 10% chance miss 90%	25%		75%
+damage Ranged = 40% chance miss 60% 	60%		40%
