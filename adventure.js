@@ -4,6 +4,8 @@ test.id = "button";
 test.innerHTML = "Start";
 test.onclick = kaasRoll;
 
+var audio2 = new Audio('css/images/Ingame-music.mp3');
+
 var title = document.getElementById('title');
 var text = document.getElementById('description');
 var control = document.createElement('h1');
@@ -143,6 +145,7 @@ function enemy(firstBattle, lastBattle){
 //hier is de informatie en uitleg kamer
 Math.floor(Math.random() * 3)
 function Text(){
+    audio2.play();
     document.getElementById("game-buttons").style.display = "none";
     document.getElementById("game-container").style.display = "block";
     title.style.color = 'white';
@@ -296,6 +299,7 @@ function bossroom(){
 }
 
 function einde(){
+    audtio2.stop();
     background(12)
     document.getElementById("healthPartPlayer").innerHTML = playerHealth;
     document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
@@ -355,9 +359,11 @@ function dealDamage(enemy, amount) {
     if(enemy == "player") {
         playerHealth -= amount;
         if(playerHealth <= 0) {
+            
             audio1.play();
             // PLAYER DEAD HERE
             playerHealth = 0;
+            audio2.pause();
             document.getElementById("button1").style.display = "none";
             document.getElementById("button2").style.display = "none";
             document.getElementById("button3").style.display = "none";
@@ -370,6 +376,7 @@ function dealDamage(enemy, amount) {
                 }
             }
            document.getElementsByClassName("enemy")[0].remove();
+           
             background(11)
         }
         document.getElementById("healthPartPlayer").innerHTML = playerHealth;
