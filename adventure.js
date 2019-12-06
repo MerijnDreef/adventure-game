@@ -94,7 +94,8 @@ function background(backgrOption){
         "url('css/images/dungeon-room-lvl2-4-size.png')",
         "url('css/images/dungeon-room-lvl2-5-size.png')",
         "url('css/images/dungeon-gate-lvl2-size.png')",
-        "url('css/images/Boss_Room_size.png')"
+        "url('css/images/Boss_Room_size.png')",
+        "url('css/images/death-screen.png')"
     ];
     document.body.style.background = ground[backgrOption];
 }
@@ -178,7 +179,7 @@ function roomlvl1(){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
-    keys(key[0]);
+    keys(allKeys[0]);
     test.onclick = gatelvl1
 }
 
@@ -246,7 +247,7 @@ function roomlvl2section4(){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
-    keys(key[1]);
+    keys(allKeys[1]);
     test.onclick = roomlvl2section5
     document.getElementById("healthPartPlayer").innerHTML = playerHealth;
     document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
@@ -262,7 +263,7 @@ function roomlvl2section5(){
         enemy(false);
     }
     document.getElementById("button").style.display = "none";
-    keys(key[2]);
+    keys(allKeys[2]);
     test.onclick = gatelvl2
     document.getElementById("healthPartPlayer").innerHTML = playerHealth;
     document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
@@ -291,11 +292,13 @@ function einde(){
 
 //dit is de damage section
 var audio = new Audio('css/images/audio_file.mp3');
+var audio1 = new Audio('css/images/minecraft-death-sound.mp3');
 function isEnemyDead() {
     if(enemyHealth <= 0) {
         if(document.getElementsByClassName("enemy")[0] != null || document.getElementsByClassName("enemy")[0] != undefined) {
             document.getElementsByClassName("enemy")[0].remove();
         }
+        audio.play();
         enemyHealth = 0;
         document.getElementById("button").style.display = "block";
     } else {
@@ -303,7 +306,6 @@ function isEnemyDead() {
     }
     document.getElementById("healthPartEnemy").style.width = 100 / maxEnemyHealth * enemyHealth + "%";
     
-    audio.play();
 }
 function highDamage() {
     var chanceToHit = getRandom(1,100)
@@ -340,16 +342,22 @@ function rangedDamage() {
 function dealDamage(enemy, amount) {
     if(enemy == "player") {
         playerHealth -= amount;
-        if(playerHealth < 0) {
-            playerHealth = 0;
+        if(playerHealth <= 0) {
+            audio1.play();
             // PLAYER DEAD HERE
-            document.getElementById("b1").style.display = "none";
-            document.getElementById("b2").style.display = "none";
-            document.getElementById("b3").style.display = "none";
+            playerHealth = 0;
+            document.getElementById("button1").style.display = "none";
+            document.getElementById("button2").style.display = "none";
+            document.getElementById("button3").style.display = "none";
             document.getElementById("healthBarPlayer").style.display = 'none';
             document.getElementById("healthBarEnemy").style.display = 'none';
             document.getElementById("button").style.display = "none";
-            //change background
+            var localKeys = document.getElementsByClassName("key")
+            for(var i = 0; i < localKeys.length; i++) {
+                localKeys[i].remove();
+            }
+           document.getElementsByClassName("enemy")[0].remove();
+            background(11)
         }
         document.getElementById("healthPartPlayer").innerHTML = playerHealth;
         document.getElementById("healthPartPlayer").style.width = 100 / maxPlayerHealth * playerHealth + "%";
@@ -376,8 +384,10 @@ document.body.appendChild(keyInv);
 keyInv = document.getElementById("keyBag");
 document.getElementById("inventoryItem").remove();
 
-var key = ["key-of-summoning-size", "key-of-horror-size", "key-of-your-eternal-reward-size"];
+var allKeys = ["key-of-summoning-size", "key-of-horror-size", "key-of-your-eternal-reward-size"];
+var key = [];
 function keys(namekey){
+    key.push(namekey);
     var newKey = document.createElement("img");
     newKey.className = "key";
     newKey.src = "css/images/" + namekey + ".png";
